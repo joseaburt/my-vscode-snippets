@@ -1,0 +1,126 @@
+{
+	"description": "These snippets includes a lot of them for k8s and for docker-compose",
+	"Kubernetes NodePort Service": {
+		"prefix": "k8s-svc-node-port",
+		"body": [
+			"apiVersion: v1",
+			"kind: Service",
+			"metadata:",
+			"  name: ${1:service-name-svc}",
+			"spec:",
+			"  type: NodePort",
+			"  selector:",
+			"    app: ${2:app-name}",
+			"  ports:",
+			"  - protocol: ${3:TCP}",
+			"    port: ${4:80}",
+			"    nodePort: ${5:31000}"
+		],
+		"description": "Create a Kubernetes Service of type NodePort"
+	},
+	"Kubernetes ClusterIP Service": {
+		"prefix": "k8s-svc-clusterip",
+		"body": [
+			"apiVersion: v1",
+			"kind: Service",
+			"metadata:",
+			"  name: ${1:service-name}",
+			"spec:",
+			"  type: ClusterIP",
+			"  selector:",
+			"    app: ${2:app-name}",
+			"  ports:",
+			"  - protocol: ${3:TCP}",
+			"    port: ${4:port}",
+			"    targetPort: ${5:target-port}"
+		],
+		"description": "Create a Kubernetes Service of type ClusterIP"
+	},
+	"Kubernetes LoadBalancer Service": {
+		"prefix": "k8s-svc-loadbalancer",
+		"body": [
+			"apiVersion: v1",
+			"kind: Service",
+			"metadata:",
+			"  name: ${1:service-name}",
+			"spec:",
+			"  type: LoadBalancer",
+			"  selector:",
+			"    app: ${2:app-name}",
+			"  ports:",
+			"  - protocol: ${3:TCP}",
+			"    port: ${4:port}",
+			"    targetPort: ${5:target-port}"
+		],
+		"description": "Create a Kubernetes Service of type LoadBalancer"
+	},
+	"Kubernetes Deployment": {
+		"prefix": "k8s-deploy",
+		"body": [
+			"apiVersion: apps/v1",
+			"kind: Deployment",
+			"metadata:",
+			"  name: ${1:deployment-name}",
+			"spec:",
+			"  replicas: ${2:3}",
+			"  selector:",
+			"    matchLabels:",
+			"      app: ${3:app-name}",
+			"  template:",
+			"    metadata:",
+			"      labels:",
+			"        app: ${3:app-name}",
+			"    spec:",
+			"      containers:",
+			"      - name: ${4:container-name}",
+			"        image: ${5:image-name}",
+			"        ports:",
+			"        - containerPort: ${6:80}"
+		],
+		"description": "Create a basic Kubernetes Deployment"
+	},
+	"Kubernetes RollingUpdate Strategy for Deployment": {
+		"prefix": "k8s-strategy-rollingupdate",
+		"body": [
+			"strategy:",
+			"  type: RollingUpdate",
+			"  rollingUpdate:",
+			"    maxUnavailable: ${1:1}",
+			"    maxSurge: ${2:1}",
+			"minReadySeconds: ${3:10}"
+		],
+		"description": "Add RollingUpdate strategy to a Kubernetes Deployment"
+	},
+	"Kubernetes LimitRange": {
+		"prefix": "k8s-limitrange",
+		"body": [
+			"apiVersion: v1",
+			"kind: LimitRange",
+			"metadata:",
+			"  name: ${1:limit-range-name}",
+			"spec:",
+			"  limits:",
+			"  - type: ${2:Container}",
+			"    max:",
+			"      cpu: ${3:100m}",
+			"      memory: ${4:200Mi}",
+			"    min:",
+			"      cpu: ${5:50m}",
+			"      memory: ${6:100Mi}",
+			"    default:",
+			"      cpu: ${7:100m}",
+			"      memory: ${8:200Mi}"
+		],
+		"description": "Add a LimitRange to a Kubernetes Deployment"
+	},
+	"Kubernetes Namespace": {
+		"prefix": "k8s-namespace",
+		"body": [
+			"apiVersion: v1",
+			"kind: Namespace",
+			"metadata:",
+			"  name: ${1:namespace-name}"
+		],
+		"description": "Create a Kubernetes Namespace"
+	}
+}
