@@ -1,5 +1,4 @@
 {
-	"description": "These snippets includes a lot of them for k8s and for docker-compose",
 	"Kubernetes NodePort Service": {
 		"prefix": "k8s-svc-node-port",
 		"body": [
@@ -14,7 +13,7 @@
 			"  ports:",
 			"  - protocol: ${3:TCP}",
 			"    port: ${4:80}",
-			"    nodePort: ${5:31000}"
+			"    nodePort: ${5:31000}",
 		],
 		"description": "Create a Kubernetes Service of type NodePort"
 	},
@@ -32,7 +31,7 @@
 			"  ports:",
 			"  - protocol: ${3:TCP}",
 			"    port: ${4:port}",
-			"    targetPort: ${5:target-port}"
+			"    targetPort: ${5:target-port}",
 		],
 		"description": "Create a Kubernetes Service of type ClusterIP"
 	},
@@ -50,7 +49,7 @@
 			"  ports:",
 			"  - protocol: ${3:TCP}",
 			"    port: ${4:port}",
-			"    targetPort: ${5:target-port}"
+			"    targetPort: ${5:target-port}",
 		],
 		"description": "Create a Kubernetes Service of type LoadBalancer"
 	},
@@ -122,5 +121,18 @@
 			"  name: ${1:namespace-name}"
 		],
 		"description": "Create a Kubernetes Namespace"
+	},
+	"Kubernetes ConfigMap": {
+		"prefix": "k8s-cm",
+		"body": [
+			"apiVersion: v1",
+			"kind: ConfigMap",
+			"metadata:",
+			"  name: ${1:configmap-name}",
+			"data:",
+			"  ${2:key1}: ${3:value1}",
+			"  ${4:key2}: ${5:value2}"
+		],
+		"description": "Create a Kubernetes ConfigMap"
 	}
 }
